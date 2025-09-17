@@ -1,5 +1,5 @@
 import { validationResult } from "express-validator";
-import { ApiError } from "../utils/error.js";
+import ApiError from "../utils/error-response/error.js";
 
 const validationHandler = (req, res, next) => {
     const errors = validationResult(req);
@@ -16,7 +16,7 @@ const validationHandler = (req, res, next) => {
         return res
             .status(400)
             .json(
-                new ApiError(400, null, "", { fieldErrors: formattedErrors }),
+                new ApiError(400, null, { fieldErrors: formattedErrors }),
             );
     }
 

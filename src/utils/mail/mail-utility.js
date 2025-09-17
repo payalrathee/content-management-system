@@ -1,8 +1,11 @@
-import logger from "../logging/logger";
-import { generateMail } from "./mail-data";
+import logger from "../logging/logger.js";
+import { generateMail } from "./mail-data.js";
+import nodemailer from "nodemailer";
 
 const sendMail = async (data) => {
     const { subject, textContent, htmlContent } = generateMail(data);
+
+    if(!process.env.MAIL_HOST || !process.env.MAIL_PORT || !process.env.MAIL_USER || !process.env.MAIL_PASS) return;
 
     const transporter = nodemailer.createTransport({
         host: process.env.MAIL_HOST,

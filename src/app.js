@@ -49,9 +49,11 @@ app.use(
 
 // Routes
 import healthCheckRoute from "./routes/healthcheck.js";
+import authRouter from "./routes/auth.js";
 import errorHandler from "./middlewares/error-handler.js";
 
 app.use("/api/v1/healthcheck", healthCheckRoute);
+app.use("/api/v1/auth", authRouter);
 
 app.use(errorHandler);
 
